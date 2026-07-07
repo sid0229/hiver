@@ -160,4 +160,4 @@ Open your browser to [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 ## 6. AI Tool Usage Disclosure
 
-This codebase was scaffolded and developed using **Antigravity (built on Claude Code)**. At runtime, **Gemini** is used for response generation (`gemini-2.5-flash`), text embeddings (`gemini-embedding-2`), and LLM-as-a-judge quality evaluations.
+This codebase was scaffolded and developed using Antigravity. At runtime, **Gemini** is used for response generation (`gemini-2.5-flash`), text embeddings (`gemini-embedding-2`), and LLM-as-a-judge quality evaluations.
