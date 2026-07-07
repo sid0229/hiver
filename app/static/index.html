@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiver AI Copilot & Evaluation System</title>
+    <style>
+        :root {
+            --bg-color: #f5f5f7;
+            --window-bg: rgba(255, 255, 255, 0.85);
+            --sidebar-bg: rgba(235, 235, 238, 0.85);
+            --border-color: rgba(200, 200, 200, 0.5);
+            --text-primary: #1d1d1f;
+            --text-secondary: #86868b;
+            --accent-color: #007aff;
+            --accent-hover: #0062cc;
+            --success-color: #34c759;
+            --warning-color: #ff9500;
+            --danger-color: #ff3b30;
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: linear-gradient(135deg, #e5e5ea 0%, #d1d1d6 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* macOS Window Container */
+        .window {
+            width: 1000px;
+            height: 700px;
+            background: var(--window-bg);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Window Title Bar */
+        .titlebar {
+            height: 48px;
+            background: var(--sidebar-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            position: relative;
+            user-select: none;
+        }
+
+        /* Traffic Lights */
+        .traffic-lights {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot-red { background-color: var(--danger-color); }
+        .dot-yellow { background-color: var(--warning-color); }
+        .dot-green { background-color: var(--success-color); }
+
+        .window-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a4a4a;
+        }
+
+        /* Main Workspace Window Layout */
+        .workspace {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 200px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.15s, color 0.15s;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Content Panel */
+        .content-area {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Input Controls */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: white;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        select:focus, textarea:focus {
+            border-color: var(--accent-color);
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.15s;
+            align-self: flex-start;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn:disabled {
+            background: var(--text-secondary);
+            cursor: not-allowed;
+        }
+
+        /* Split layout for editor and results */
+        .split-layout {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .left-pane, .right-pane {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+        }
+
+        .pane-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .output-box {
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            background: #fafafa;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+            min-height: 120px;
+            color: var(--text-primary);
+        }
+
+        /* Evaluation UI Components */
+        .eval-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .score-gauge-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .overall-score-badge {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+        }
+
+        .overall-score-badge span {
+            font-size: 10px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .similarity-badge {
+            background: #f5f5f7;
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .dimension-bar-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .dimension-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .bar-outer {
+            height: 8px;
+            background: #e5e5ea;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-inner {
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 4px;
+            transition: width 0.5s ease-out;
+        }
+
+        .dimension-justification {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+
+        /* Report Tab Markdown Display */
+        .report-view {
+            font-size: 13px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            font-family: inherit;
+        }
+
+        .report-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            max-height: 550px;
+            overflow-y: auto;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-val {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .stat-lbl {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Simple Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        <!-- Title bar -->
+        <div class="titlebar">
+            <div class="traffic-lights">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+            </div>
+            <div class="window-title">Hiver Support Copilot Evaluation</div>
+        </div>
+
+        <!-- Main Workspace -->
+        <div class="workspace">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="nav-item active" onclick="switchTab('sandbox')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Sandbox Tester
+                </div>
+                <div class="nav-item" onclick="switchTab('dashboard')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                    System Dashboard
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Sandbox Tab -->
+                <div id="sandbox-tab" class="tab-content active">
+                    <h2>Sandbox Suggested Reply Tester</h2>
+                    <p style="font-size:12px; color:var(--text-secondary); margin-bottom:15px;">
+                        Select a sample email case or paste your own to generate a reply with Hiver RAG & evaluate it with LLM-as-a-judge.
+                    </p>
+
+                    <div class="split-layout">
+                        <!-- Left Pane: Input and Draft generation -->
+                        <div class="left-pane">
+                            <div class="pane-card form-group">
+                                <label for="sample-select">Load Support Scenario</label>
+                                <select id="sample-select" onchange="loadSample()">
+                                    <option value="">-- Custom Email / Paste Below --</option>
+                                    <option value="billing_double">Billing: Double Charge (Frustrated Customer)</option>
+                                    <option value="bug_sync">Bug Report: Sync Delays (High Urgency)</option>
+                                    <option value="feature_dark">Feature Request: Dark Mode Theme (Polite)</option>
+                                    <option value="cancel_delete">Cancellation: Account Purge Clarification</option>
+                                    <option value="onboard_assign">Onboarding: How to assign conversation</option>
+                                    <option value="integ_slack">Integration: Disconnected Slack setup</option>
+                                </select>
+                            </div>
+
+                            <div class="pane-card form-group">
+                                <label for="incoming-input">Incoming Customer Email</label>
+                                <textarea id="incoming-input" placeholder="Type or paste incoming email here..."></textarea>
+                            </div>
+
+                            <button id="btn-generate" class="btn" onclick="runPipeline()">
+                                Generate & Evaluate Reply
+                            </button>
+
+                            <div class="pane-card">
+                                <label>Suggested Reply (Generated with Few-Shot RAG)</label>
+                                <div id="generated-output" class="output-box" style="margin-top:8px;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Right Pane: Evaluation results -->
+                        <div class="right-pane">
+                            <div class="pane-card eval-section">
+                                <label>Evaluation Report</label>
+                                <div id="eval-placeholder" style="text-align:center; padding: 40px 0; color:var(--text-secondary); font-size:13px;">
+                                    Generate a response to view the multi-dimensional grading report.
+                                </div>
+                                <div id="eval-results" class="hidden">
+                                    <div class="score-gauge-container">
+                                        <div class="overall-score-badge">
+                                            <div id="overall-score-val">0.0</div>
+                                            <span>Weighted</span>
+                                        </div>
+                                        <div class="similarity-badge">
+                                            Reference Similarity: <span id="similarity-score-val">0.00</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Relevance -->
+                                    <div class="dimension-bar-container">
+                                        <div class="dimension-header">
+                                            <span>Relevance (25%)</span>
+                                            <span id="score-relevance">0/5</span>
+                                        </div>
+                                        <div class="bar-outer">
+                                            <div id="bar-relevance" class="bar-inner" style="width: 0%;"></div>
+                                        </div>
+                                        <div id="just-relevance" class="dimension-justification"></div>
+                                    </div>
+
+                                    <!-- Correctness -->
+                                    <div class="dimension-bar-container">
+                                        <div class="dimension-header">
+                                            <span>Correctness & Groundedness (25%)</span>
+                                            <span id="score-correctness">0/5</span>
+                                        </div>
+                                        <div class="bar-outer">
+                                            <div id="bar-correctness" class="bar-inner" style="width: 0%;"></div>
+                                        </div>
+                                        <div id="just-correctness" class="dimension-justification"></div>
+                                    </div>
+
+                                    <!-- Tone -->
+                                    <div class="dimension-bar-container">
+                                        <div class="dimension-header">
+                                            <span>Tone Appropriateness (15%)</span>
+                                            <span id="score-tone">0/5</span>
+                                        </div>
+                                        <div class="bar-outer">
+                                            <div id="bar-tone" class="bar-inner" style="width: 0%;"></div>
+                                        </div>
+                                        <div id="just-tone" class="dimension-justification"></div>
+                                    </div>
+
+                                    <!-- Completeness -->
+                                    <div class="dimension-bar-container">
+                                        <div class="dimension-header">
+                                            <span>Completeness (20%)</span>
+                                            <span id="score-completeness">0/5</span>
+                                        </div>
+                                        <div class="bar-outer">
+                                            <div id="bar-completeness" class="bar-inner" style="width: 0%;"></div>
+                                        </div>
+                                        <div id="just-completeness" class="dimension-justification"></div>
+                                    </div>
+
+                                    <!-- Conciseness -->
+                                    <div class="dimension-bar-container">
+                                        <div class="dimension-header">
+                                            <span>Conciseness & Actionability (15%)</span>
+                                            <span id="score-conciseness">0/5</span>
+                                        </div>
+                                        <div class="bar-outer">
+                                            <div id="bar-conciseness" class="bar-inner" style="width: 0%;"></div>
+                                        </div>
+                                        <div id="just-conciseness" class="dimension-justification"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Tab -->
+                <div id="dashboard-tab" class="tab-content">
+                    <h2>Overall System Evaluation</h2>
+                    
+                    <div id="dashboard-placeholder" style="text-align:center; padding: 60px 0; color:var(--text-secondary); font-size:13px;">
+                        Loading aggregate reports from evaluation pipeline...
+                    </div>
+
+                    <div id="dashboard-results" class="hidden" style="display:flex; flex-direction:column; gap:20px;">
+                        <div class="report-grid">
+                            <div class="stat-card">
+                                <div id="stat-system-score" class="stat-val">0.0</div>
+                                <div class="stat-lbl">Overall System Score</div>
+                            </div>
+                            <div class="stat-card">
+                                <div id="stat-gold-similarity" class="stat-val">0.00</div>
+                                <div class="stat-lbl">Reference Similarity</div>
+                            </div>
+                            <div class="stat-card">
+                                <div id="stat-cases-count" class="stat-val">0</div>
+                                <div class="stat-lbl">Cases Evaluated</div>
+                            </div>
+                        </div>
+
+                        <div class="report-card">
+                            <h3>Full Summary Report (eval/report.md)</h3>
+                            <pre id="report-md-content" class="report-view" style="margin-top:12px; background:#f9f9f9; padding:16px; border-radius:6px; border:1px solid var(--border-color); max-height: 350px; overflow-y: auto;"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample emails database matching our scenarios
+        const SAMPLES = {
+            billing_double: {
+                incoming: "Hi, I noticed two charges of $29 on my card this month. Can you please check and refund one?",
+                gold: "Hi, thank you for reaching out. I've checked your account and confirmed you were double-billed due to a system glitch. I have processed a refund of $29. You should see it in 3-5 business days. Apologies for the trouble!"
+            },
+            bug_sync: {
+                incoming: "Hi support, my email sync has stopped working. I am not receiving any new emails in Hiver since 9 AM today. Help!",
+                gold: "Hi, sorry for the inconvenience. Our engineering team is currently investigating a sync delay affecting a subset of users. We are actively working on a fix and expect everything to be back to normal within 2 hours. Your emails are safe and will backfill automatically. I will update you as soon as it is resolved."
+            },
+            feature_dark: {
+                incoming: "Hello, does Hiver support dark mode? It's really hard to work in the dark with this bright interface.",
+                gold: "Hi, thanks for reaching out! Currently, Hiver does not support a native dark mode, but it is one of our most requested features. I have added your vote to the feature request list for our product team. In the meantime, some users use browser extensions like Dark Reader as a temporary workaround. Thanks for the feedback!"
+            },
+            cancel_delete: {
+                incoming: "Please cancel my account immediately. Also, will this delete all my historical shared inbox threads? I need to know before we proceed.",
+                gold: "Hi, I have cancelled your Hiver subscription, and your account will remain active until the end of the current billing cycle. Regarding your historical threads, your data is stored securely. If you decide to delete your account permanently, all historical threads will be purged, but standard cancellation keeps them read-only. Let me know if you would like us to permanently delete your data."
+            },
+            onboard_assign: {
+                incoming: "How do I assign a conversation to my colleague? I can't find the assign button.",
+                gold: "Hi there! To assign an email, open the email thread in Gmail. On the right-hand Hiver panel, click the 'Assignee' dropdown field, search or select your colleague's name, and click save. The conversation will immediately appear in their 'Assigned to me' folder. Let me know if you need anything else!"
+            },
+            integ_slack: {
+                incoming: "Our Slack integration broke this morning. None of the notifications are arriving in our channel.",
+                gold: "Hi, thanks for reaching out. Please try disconnecting and reconnecting the Slack integration from the Hiver Admin Settings panel. This usually refreshes the API authentication tokens and resolves sync issues. If this doesn't work, please send us a screenshot of the error message you see. Thanks!"
+            }
+        };
+
+        let currentGoldReply = "";
+        let currentRetrievedExamples = [];
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+
+            if (tabId === 'sandbox') {
+                document.querySelector('.nav-item:nth-child(1)').classList.add('active');
+                document.getElementById('sandbox-tab').classList.add('active');
+            } else {
+                document.querySelector('.nav-item:nth-child(2)').classList.add('active');
+                document.getElementById('dashboard-tab').classList.add('active');
+                loadDashboardReport();
+            }
+        }
+
+        function loadSample() {
+            const val = document.getElementById('sample-select').value;
+            if (val && SAMPLES[val]) {
+                document.getElementById('incoming-input').value = SAMPLES[val].incoming;
+                currentGoldReply = SAMPLES[val].gold;
+            } else {
+                document.getElementById('incoming-input').value = "";
+                currentGoldReply = "";
+            }
+        }
+
+        // Simulates streaming generation text
+        function typeText(element, text, callback) {
+            element.innerText = "";
+            let idx = 0;
+            const words = text.split(" ");
+            const interval = setInterval(() => {
+                if (idx < words.length) {
+                    element.innerText += (idx === 0 ? "" : " ") + words[idx];
+                    idx++;
+                    element.scrollTop = element.scrollHeight;
+                } else {
+                    clearInterval(interval);
+                    if (callback) callback();
+                }
+            }, 30);
+        }
+
+        async function runPipeline() {
+            const inputVal = document.getElementById('incoming-input').value.strip ? 
+                document.getElementById('incoming-input').value.strip() : 
+                document.getElementById('incoming-input').value;
+            
+            if (!inputVal) {
+                alert("Please select or enter an incoming email first.");
+                return;
+            }
+
+            const btn = document.getElementById('btn-generate');
+            const outputBox = document.getElementById('generated-output');
+            const placeholder = document.getElementById('eval-placeholder');
+            const resultsDiv = document.getElementById('eval-results');
+
+            btn.disabled = true;
+            btn.innerHTML = `<span class="spinner"></span>Generating...`;
+            outputBox.innerText = "Connecting to Gemini RAG pipeline...";
+            placeholder.classList.remove('hidden');
+            placeholder.innerText = "Waiting for generation to finish...";
+            resultsDiv.classList.add('hidden');
+
+            try {
+                // Step 1: Call API to generate reply
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ incoming_email: inputVal })
+                });
+
+                if (!response.ok) {
+                    const err = await response.json();
+                    throw new Error(err.detail || "Generation failed.");
+                }
+
+                const data = await response.json();
+                currentRetrievedExamples = data.retrieved_examples;
+
+                // Step 2: Animate text rendering
+                typeText(outputBox, data.generated_reply, async () => {
+                    // Step 3: Run Evaluation
+                    placeholder.innerText = "Evaluating response with LLM Judge...";
+                    
+                    try {
+                        const evalResponse = await fetch('/api/evaluate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                incoming_email: inputVal,
+                                generated_reply: data.generated_reply,
+                                gold_reply: currentGoldReply || data.generated_reply, // Use generated as self-gold if custom
+                                retrieved_examples: currentRetrievedExamples
+                            })
+                        });
+
+                        if (!evalResponse.ok) {
+                            const err = await evalResponse.json();
+                            throw new Error(err.detail || "Evaluation failed.");
+                        }
+
+                        const evalData = await evalResponse.json();
+                        
+                        // Step 4: Render evaluation scores
+                        placeholder.classList.add('hidden');
+                        resultsDiv.classList.remove('hidden');
+
+                        document.getElementById('overall-score-val').innerText = evalData.weighted_score.toFixed(1);
+                        document.getElementById('similarity-score-val').innerText = evalData.gold_similarity.toFixed(2);
+
+                        // Dimensions render
+                        const dims = ['relevance', 'correctness', 'tone', 'completeness', 'conciseness'];
+                        dims.forEach(dim => {
+                            const scoreObj = evalData.judge_scores[dim];
+                            const scorePct = (scoreObj.score / 5) * 100;
+                            
+                            document.getElementById(`score-${dim}`).innerText = `${scoreObj.score}/5`;
+                            document.getElementById(`bar-${dim}`).style.width = `${scorePct}%`;
+                            document.getElementById(`just-${dim}`).innerText = scoreObj.justification;
+
+                            // Color coding depending on score
+                            const bar = document.getElementById(`bar-${dim}`);
+                            if (scoreObj.score >= 4) {
+                                bar.style.backgroundColor = 'var(--success-color)';
+                            } else if (scoreObj.score >= 3) {
+                                bar.style.backgroundColor = 'var(--warning-color)';
+                            } else {
+                                bar.style.backgroundColor = 'var(--danger-color)';
+                            }
+                        });
+
+                    } catch (evalErr) {
+                        placeholder.innerText = `Evaluation Error: ${evalErr.message}`;
+                    } finally {
+                        btn.disabled = false;
+                        btn.innerText = "Generate & Evaluate Reply";
+                    }
+                });
+
+            } catch (err) {
+                outputBox.innerText = `Error: ${err.message}`;
+                placeholder.innerText = "Generation failed. Try again.";
+                btn.disabled = false;
+                btn.innerText = "Generate & Evaluate Reply";
+            }
+        }
+
+        async function loadDashboardReport() {
+            const placeholder = document.getElementById('dashboard-placeholder');
+            const results = document.getElementById('dashboard-results');
+            
+            try {
+                const response = await fetch('/api/report');
+                if (!response.ok) throw new Error("Could not load report.");
+                
+                const data = await response.json();
+                if (!data.has_eval) {
+                    placeholder.innerHTML = `
+                        <div style="padding: 20px;">
+                            <p style="margin-bottom:15px;">${data.message}</p>
+                            <button class="btn" style="align-self:center;" onclick="triggerEvaluationPipeline(this)">Run Batch Evaluation Script</button>
+                        </div>
+                    `;
+                    results.classList.add('hidden');
+                    return;
+                }
+                
+                placeholder.classList.add('hidden');
+                results.classList.remove('hidden');
+                
+                // Aggregate score stats
+                const scores = data.results.map(r => r.weighted_score);
+                const avgScore = scores.reduce((a,b)=>a+b, 0) / scores.length;
+                const similarities = data.results.map(r => r.gold_similarity);
+                const avgSimilarity = similarities.reduce((a,b)=>a+b, 0) / similarities.length;
+
+                document.getElementById('stat-system-score').innerText = avgScore.toFixed(1);
+                document.getElementById('stat-gold-similarity').innerText = avgSimilarity.toFixed(2);
+                document.getElementById('stat-cases-count').innerText = data.results.length;
+                
+                // Report text
+                document.getElementById('report-md-content').innerText = data.report_markdown;
+
+            } catch (err) {
+                placeholder.innerText = `Error loading report: ${err.message}`;
+            }
+        }
+
+        async function triggerEvaluationPipeline(btn) {
+            btn.disabled = true;
+            btn.innerHTML = `<span class="spinner"></span>Running pipeline...`;
+            
+            try {
+                // Inform user how to trigger or call local scripts if backend supports it
+                alert("Please run 'python eval/evaluate.py' in the terminal to evaluate the system on your dataset. Once completed, refresh this page to see the stats.");
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Run Batch Evaluation Script";
+            }
+        }
+    </script>
+</body>
+</html>

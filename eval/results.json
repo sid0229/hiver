@@ -1,0 +1,686 @@
+[
+  {
+    "id": "email_001",
+    "category": "billing",
+    "incoming_email": "Hi, I noticed two charges of $29 on my credit card from Hiver on July 5th. Can you please refund one? This is urgent.",
+    "gold_reply": "Hi John,\n\nThanks for reaching out, and sorry for the oversight! I have checked your account and confirmed that you were double-billed due to a card processing retry glitch on July 5th. I have already processed a refund of $29 to your card. You should see it reflected in your account in 3-5 business days.\n\nLet me know if you need anything else!\n\nBest regards,\nAlice\nHiver Support",
+    "generated_reply": "Hi there,\n\nI am very sorry for the frustration caused by this duplicate charge. I have looked into your account and confirmed that two charges of $29 were processed on July 5th.\n\nI have initiated a refund for the duplicate transaction immediately. You should see the funds credited back to your original payment method within 3-5 business days. \n\nThank you for your patience, and please let me know if there is anything else I can assist you with.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_002",
+      "email_003",
+      "email_004"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply fully resolves the issue by confirming the duplicate charge and providing a clear timeline for the refund.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The message is direct and avoids unnecessary filler, providing the necessary information in a professional manner.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The reply accurately reflects the billing issue and provides a standard refund timeline consistent with the provided references.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the customer's request for a refund regarding the two $29 charges on July 5th.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and appropriately empathetic to the customer's stated urgency without being overly dramatic.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.922
+  },
+  {
+    "id": "email_002",
+    "category": "billing",
+    "incoming_email": "Hello, I was billed twice for my Hiver subscription this month. Two transactions of $49 each on July 6th. Please check and issue a refund.",
+    "gold_reply": "Hello Sarah,\n\nApologies for the double charge! I've looked at your billing logs and see that the duplicate transaction of $49 occurred on July 6th. I have cancelled the second charge and initiated a refund. It usually takes 5-10 business days to appear on your bank statement. Let me know if you need a PDF receipt for the refund.\n\nBest,\nBob\nHiver Support",
+    "generated_reply": "Hi there,\n\nThank you for reaching out. I have looked into your account and confirmed that a duplicate charge of $49 occurred on July 6th.\n\nI have processed a refund for the extra transaction, and you should see the funds credited back to your original payment method within 3-5 business days. We apologize for the inconvenience!\n\nBest regards,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_003",
+      "email_001",
+      "email_004"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply fully resolves the issue by confirming the duplicate charge and providing a clear timeline for the refund.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, getting straight to the resolution.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The reply accurately reflects the refund timeline and process established in the provided reference examples.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "It directly addresses the customer's report of being billed twice and their request for a refund.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and appropriately apologetic, though it lacks a personalized touch by using a generic sign-off.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.9372
+  },
+  {
+    "id": "email_003",
+    "category": "billing",
+    "incoming_email": "Hey support, why did Hiver charge me $99 twice on July 7th? I only have one shared inbox. Please revert the duplicate charge immediately.",
+    "gold_reply": "Hi Michael,\n\nSo sorry for the billing mixup! You are absolutely right\u2014our payment gateway processed two charges of $99 on July 7th. I've successfully refunded one of the charges. The refund process has been initiated and should complete in 3-5 days. Thank you for your patience!\n\nRegards,\nCharlie\nHiver Support",
+    "generated_reply": "Hi there,\n\nI am very sorry for the frustration caused by this double charge. I have looked into your account and confirmed that a duplicate transaction of $99 occurred on July 7th. \n\nI have processed a refund for the extra charge immediately. You should see the funds reflected in your account within 3-5 business days, depending on your bank.\n\nPlease let me know if there is anything else I can assist you with.\n\nBest regards,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_002",
+      "email_001",
+      "email_004"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply confirms the refund and provides a clear timeline for the funds to appear, leaving no ambiguity for the customer.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, getting straight to the resolution of the billing issue.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The reply accurately addresses the specific charge amount and date mentioned by the customer, and the refund timeline is consistent with the provided references.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the customer's concern regarding the duplicate $99 charge on July 7th.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and appropriately apologetic, matching the customer's direct and slightly frustrated inquiry.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.9489
+  },
+  {
+    "id": "email_009",
+    "category": "bug_report",
+    "incoming_email": "Hello, our emails are not syncing in real-time today. There is a delay of about 15 minutes, which is causing us to miss customer updates. Is there an outage?",
+    "gold_reply": "Hi John,\n\nI sincerely apologize for the delay. We are currently experiencing a sync backlog on our primary email processing queue. Our engineering team is actively investigating the issue. Your emails are safe and will sync as soon as the queue clears. I will keep you posted here.\n\nBest,\nAlice\nHiver Support",
+    "generated_reply": "Hi there,\n\nThank you for reaching out. We are currently experiencing a system-wide sync latency of approximately 15 minutes. Our engineering team is actively working to clear the backlog and restore real-time delivery.\n\nI apologize for the impact this is having on your team's workflow. I will follow up with you as soon as the sync speeds return to normal.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_010",
+      "email_011",
+      "email_012"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply addresses the issue and provides a clear next step by promising a follow-up, though it lacks a specific estimated time for resolution found in the references.",
+        "score": 4
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, effectively communicating the status and the plan.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The information provided aligns with the provided references regarding system-wide sync latency and the engineering team's involvement.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly answers the customer's question about whether there is an outage by confirming the sync latency.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and empathetic, appropriately acknowledging the impact on the customer's workflow.",
+        "score": 5
+      }
+    },
+    "weighted_score": 4.8,
+    "gold_similarity": 0.9268
+  },
+  {
+    "id": "email_010",
+    "category": "bug_report",
+    "incoming_email": "Hi support, we are noticing a major lag in incoming emails in our shared support inbox. It takes ages for emails to show up. Help!",
+    "gold_reply": "Hello Sarah,\n\nSorry for the delay in email syncing. We are currently experiencing a transient API issue with Gmail's push notifications, resulting in latency. We are working on a fix and expect it to be fully resolved in the next hour. All delayed emails will backfill automatically. Thank you for your patience.\n\nBest,\nBob\nHiver Support",
+    "generated_reply": "Hi there,\n\nI am very sorry for the frustration this is causing your team. We are currently experiencing a sync delay that is impacting email delivery times in shared inboxes.\n\nOur engineering team is actively working to clear the backlog and restore real-time syncing. I am monitoring your account specifically and will notify you the moment the issue is resolved.\n\nThank you for your patience while we get this fixed.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_009",
+      "email_011",
+      "email_012"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply provides a clear path forward by promising a follow-up notification, though it lacks a specific estimated time for resolution found in some reference examples.",
+        "score": 4
+      },
+      "conciseness": {
+        "justification": "The message is direct and avoids unnecessary filler, effectively communicating the status and next steps.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The information provided aligns with the reference materials regarding sync delays and engineering team involvement without inventing unsupported details.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the customer's report of email lag by confirming the issue and explaining the current status.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and appropriately empathetic to the customer's frustration without being overly apologetic.",
+        "score": 5
+      }
+    },
+    "weighted_score": 4.8,
+    "gold_similarity": 0.8686
+  },
+  {
+    "id": "email_011",
+    "category": "bug_report",
+    "incoming_email": "Hey Hiver team, email delivery inside our Gmail workspace seems delayed by 20 minutes. We're using Chrome on macOS. Is there a server issue?",
+    "gold_reply": "Hi Michael,\n\nThanks for reaching out. Yes, we are currently experiencing a system-wide sync latency of 15-20 minutes. Our team is resolving the database backlog now. I've flagged your account to monitor it specifically. I will write back as soon as the sync lag is resolved.\n\nRegards,\nCharlie\nHiver Support",
+    "generated_reply": "Hi there,\n\nI apologize for the delay you're experiencing with email delivery. We are currently investigating a sync backlog that is affecting some accounts. \n\nYour emails are safe and will appear in your inbox as soon as the queue clears. I am monitoring the situation closely and will let you know as soon as everything is back to normal. Thank you for your patience.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_009",
+      "email_010",
+      "email_044"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply addresses the delay and provides reassurance, but it fails to provide a specific timeline or a clear expectation for when the user might hear back, leaving some uncertainty.",
+        "score": 3
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, effectively communicating the status without being wordy.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The reply correctly identifies the issue as a sync backlog, which is consistent with the provided reference material.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the user's concern regarding the 20-minute delay, though it ignores the specific context of the user's environment (Chrome on macOS).",
+        "score": 4
+      },
+      "tone": {
+        "justification": "The tone is professional and empathetic, matching the customer's inquiry appropriately without being overly formal or casual.",
+        "score": 5
+      }
+    },
+    "weighted_score": 4.35,
+    "gold_similarity": 0.8917
+  },
+  {
+    "id": "email_017",
+    "category": "feature_request",
+    "incoming_email": "Hi Hiver team, is there any plan to support dark mode? The bright interface is really straining my eyes at night.",
+    "gold_reply": "Hi John,\n\nThanks for reaching out! Currently, Hiver does not support a native dark mode, but we hear you\u2014it is one of our most requested features. I have officially logged this feedback with our product team to raise its priority. In the meantime, many of our users use the 'Dark Reader' browser extension as a temporary workaround.\n\nBest regards,\nAlice\nHiver Support",
+    "generated_reply": "Hi there,\n\nThank you for reaching out. I completely understand how a bright interface can be straining, especially when working late.\n\nWhile we don't have a specific timeline for a native dark mode, I have shared your feedback with our product team. We prioritize features based on user requests, so your input is very helpful. \n\nIn the meantime, please let me know if there is anything else I can assist you with.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_020",
+      "email_018",
+      "email_019"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply acknowledges the request but fails to offer any proactive steps like adding the user to a notification list or tracking the request, leaving the user with no clear path forward.",
+        "score": 3
+      },
+      "conciseness": {
+        "justification": "The response is well-structured and avoids unnecessary filler, getting straight to the point regarding the feature status.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The information provided aligns with the provided references regarding the lack of a specific timeline for dark mode.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the user's question about dark mode and acknowledges the specific pain point of eye strain.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and empathetic, effectively validating the user's concern about eye strain.",
+        "score": 5
+      }
+    },
+    "weighted_score": 4.6,
+    "gold_similarity": 0.9244
+  },
+  {
+    "id": "email_018",
+    "category": "feature_request",
+    "incoming_email": "Hello, does Hiver have a dark theme? If not, please consider this a feature request. It would be amazing.",
+    "gold_reply": "Hello Sarah,\n\nThank you for the suggestion! We don't have a dark theme available yet, but it is currently on our product roadmap for later this year. I've added your account details to the notification list so we'll alert you the moment it goes live!\n\nBest,\nBob\nHiver Support",
+    "generated_reply": "Hi there,\n\nThanks for reaching out! We currently do not have a native dark mode, but I have officially logged your request with our product team. We value feedback from our users as it helps us prioritize future updates.\n\nIn the meantime, many of our users find that using a browser extension like 'Dark Reader' works well as a temporary workaround.\n\nBest regards,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_020",
+      "email_017",
+      "email_019"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply addresses the feature request and provides a helpful workaround, leaving no ambiguity for the user.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, effectively communicating the status and the workaround.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The information regarding the lack of native dark mode and the suggestion of a browser extension aligns perfectly with the provided reference materials.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly answers the user's question about dark mode and acknowledges their feature request.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and helpful, though it lacks a personalized touch by using a generic 'Hiver Support' sign-off instead of a representative's name.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.942
+  },
+  {
+    "id": "email_019",
+    "category": "feature_request",
+    "incoming_email": "Hey support, my team really wants a dark mode theme for the shared inbox extension. Any timeline on when this might be released?",
+    "gold_reply": "Hi Michael,\n\nGreat idea! While we don't have a specific timeline for dark mode, I have passed your request along to our design team. Feedback from active teams like yours helps us decide what to build next. Thank you!\n\nRegards,\nCharlie\nHiver Support",
+    "generated_reply": "Hi there,\n\nThanks for reaching out! We understand that a dark mode theme is highly requested, especially for teams spending a lot of time in their shared inboxes.\n\nWhile we don't have a specific release date to share just yet, I have added your team's interest to our product roadmap. This helps our team prioritize development based on user demand. We\u2019ll be sure to send out an update to all our users as soon as this feature becomes available.\n\nBest regards,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_017",
+      "email_018",
+      "email_020"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply addresses the timeline question by stating there is no date, but it fails to offer any workarounds or interim solutions that were present in the reference materials.",
+        "score": 3
+      },
+      "conciseness": {
+        "justification": "The response is well-structured and avoids unnecessary filler, getting straight to the point regarding the feature request.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The information provided is consistent with the reference materials, correctly identifying that there is no current release date.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly answers the customer's inquiry about a timeline for the dark mode feature.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional, polite, and appropriately acknowledges the customer's request without being overly formal or robotic.",
+        "score": 5
+      }
+    },
+    "weighted_score": 4.6,
+    "gold_similarity": 0.9435
+  },
+  {
+    "id": "email_025",
+    "category": "cancellation",
+    "incoming_email": "I want to cancel my Hiver subscription immediately and request a full refund. We are no longer using the tool.",
+    "gold_reply": "Hi John,\n\nI have processed the cancellation of your subscription. Since you were billed recently and haven't used the tool, I have also issued a full refund of $29 to your card. The refund will take 3-5 days. Your account will remain active in read-only mode until the end of the billing cycle.\n\nBest,\nAlice\nHiver Support",
+    "generated_reply": "Hi there,\n\nI have processed the cancellation of your Hiver subscription as requested. I have also initiated a full refund for your most recent payment. \n\nYou should see the funds reflected in your account within 5-10 business days. Please let me know if you have any further questions or if there is anything else I can assist you with.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_028",
+      "email_027",
+      "email_026"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply confirms both the cancellation and the refund, providing a clear timeline for the funds, which resolves the customer's request entirely.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, getting straight to the point of the customer's request.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The refund timeline of 5-10 business days is consistent with the provided reference examples.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses both the cancellation request and the refund request made by the customer.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and helpful, though it is slightly generic due to the lack of a personalized name in the greeting.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.911
+  },
+  {
+    "id": "email_026",
+    "category": "cancellation",
+    "incoming_email": "Hi support, please cancel our account. We'd also like a refund for the current month since we didn't use it. Thank you.",
+    "gold_reply": "Hello Sarah,\n\nI've cancelled your subscription as requested. I have also processed a refund for the unused days of this billing cycle. You should see the credit of $49 on your card statement within a few business days. Let me know if you need a receipt for this refund.\n\nBest,\nBob\nHiver Support",
+    "generated_reply": "Hi there,\n\nI have processed the cancellation of your Hiver subscription as requested. I have also initiated a refund for this month's charge, which should reflect in your account within 5-10 business days.\n\nWe\u2019re sorry to see you go. If you have a moment, we would appreciate any feedback on how we could have better served your team.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_027",
+      "email_025",
+      "email_028"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply confirms both the cancellation and the refund, providing a clear timeline for the refund process.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The message is direct and avoids unnecessary filler, effectively communicating the required information.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The refund timeline of 5-10 business days is consistent with the provided reference material.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses both the cancellation request and the refund request made by the customer.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and polite, though it remains somewhat generic due to the lack of a personalized name.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.9283
+  },
+  {
+    "id": "email_027",
+    "category": "cancellation",
+    "incoming_email": "Please cancel my account. We were charged yesterday but we decided to stop using Hiver. I request a refund of the charge.",
+    "gold_reply": "Hi Michael,\n\nI have processed the cancellation and refunded your payment of $99 from yesterday. The funds will return to your account in 3-5 business days. Your workspace data will remain accessible until the end of the month. Thank you for using Hiver!\n\nRegards,\nCharlie\nHiver Support",
+    "generated_reply": "Hi there,\n\nI have processed the cancellation of your Hiver subscription as requested. \n\nSince you were charged yesterday, I have also issued a full refund for that payment. You should see the funds reflected in your account within 5-10 business days, depending on your bank. \n\nPlease let us know if there is anything else we can assist you with.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_028",
+      "email_025",
+      "email_026"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply confirms both the cancellation and the refund, providing a clear timeline for the customer to expect the funds.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, getting straight to the resolution of the customer's request.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The refund timeline of 5-10 business days is consistent with the provided reference material.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses both the cancellation request and the refund request made by the customer.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and helpful, though it lacks a personalized touch as it is signed generically by 'Hiver Support' rather than a specific agent name.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.8901
+  },
+  {
+    "id": "email_033",
+    "category": "onboarding",
+    "incoming_email": "Hi, I'm new to Hiver. How do I assign an email to one of my teammates? I can't find the assign button.",
+    "gold_reply": "Hi John,\n\nWelcome to Hiver! To assign an email, open the thread in Gmail. You will see the Hiver sidebar on the right. Click the 'Assignee' dropdown field, select or search for your colleague, and click save. The email will automatically appear in their 'Assigned to me' tab.\n\nBest,\nAlice\nHiver Support",
+    "generated_reply": "Hi there,\n\nWelcome to Hiver! \n\nTo assign an email, open the conversation in your Gmail. On the right-hand side, you will see the Hiver panel. Click on the 'Assignee' dropdown menu and select the teammate you would like to assign the email to. \n\nIf you don't see the Hiver panel, please ensure the Hiver extension is enabled in your browser. Let us know if you need any further assistance!\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_035",
+      "email_036",
+      "email_040"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply provides the correct steps to assign an email and adds a helpful troubleshooting step for why the button might be missing.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, providing only the relevant instructions and a logical troubleshooting tip.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The instructions accurately reflect the Hiver interface as described in the provided references.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly answers the user's question about how to assign an email and addresses their specific concern about not finding the button.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is welcoming and professional, which is appropriate for a new user reaching out for support.",
+        "score": 5
+      }
+    },
+    "weighted_score": 5.0,
+    "gold_similarity": 0.9613
+  },
+  {
+    "id": "email_034",
+    "category": "onboarding",
+    "incoming_email": "Hello support, how do I delegate a conversation to someone else? I need a quick step-by-step guide.",
+    "gold_reply": "Hello Sarah,\n\nGlad to have you onboard! You can assign an email by clicking the 'Assign' dropdown in the Hiver panel on the right side of the open email. Just choose your colleague's name, and they'll be notified immediately. Let me know if you would like a quick screenshare demo!\n\nBest,\nBob\nHiver Support",
+    "generated_reply": "Hi there,\n\nTo delegate a conversation in Hiver, please follow these steps:\n\n1. Open the email thread within your Gmail interface.\n2. Locate the Hiver sidebar on the right-hand side of your screen.\n3. Click on the 'Assignee' dropdown menu.\n4. Select the teammate you wish to delegate the conversation to.\n\nOnce selected, the email will move to their 'Assigned to me' view, and they will receive a notification. Let us know if you have any other questions!\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_036",
+      "email_033",
+      "email_035"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply provides a clear, step-by-step guide that fully resolves the user's request for instructions on how to delegate a conversation.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, providing only the essential steps required to complete the task.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The steps provided are accurate and consistent with the provided reference materials regarding the Hiver sidebar and assignee functionality.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the user's specific question about how to delegate a conversation with a step-by-step guide.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and helpful, though it is somewhat generic due to the use of a 'Hiver Support' signature rather than a personal name.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.8696
+  },
+  {
+    "id": "email_035",
+    "category": "onboarding",
+    "incoming_email": "Hey team, where is the option to assign an email to a teammate? I see the shared inbox but not the assign options.",
+    "gold_reply": "Hi Michael,\n\nTo assign an email: 1. Open the thread in Gmail. 2. Look at the Hiver panel on the right. 3. Click the dropdown under 'Assignee' and pick a team member. You can also assign it to yourself by clicking the 'Claim' button at the top.\n\nRegards,\nCharlie\nHiver Support",
+    "generated_reply": "Hi there,\n\nWelcome to Hiver! To assign an email, please ensure you have the Hiver sidebar open on the right side of your Gmail screen. Once you open a specific email thread, you will see an \"Assignee\" field within that sidebar. Simply click the dropdown menu, select your teammate, and click save.\n\nIf you don't see the sidebar, please ensure the Hiver extension is enabled in your browser. Let me know if you're still having trouble locating it!\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_033",
+      "email_036",
+      "email_037"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply provides clear steps to assign an email and includes a necessary troubleshooting step if the sidebar is missing.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, providing exactly the information needed to resolve the user's issue.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The instructions accurately reflect the standard Hiver workflow for assigning emails as described in the provided references.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the user's specific question about where to find the assignment option.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional, welcoming, and helpful, which is appropriate for a customer support interaction.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.9389
+  },
+  {
+    "id": "email_041",
+    "category": "integration",
+    "incoming_email": "Hi, our Slack integration suddenly stopped working today. We are not getting any notifications in our #support channel when emails are assigned.",
+    "gold_reply": "Hi John,\n\nI'm sorry for the interruption. We had an API token expiration issue with our Slack integration app earlier today. Please go to Hiver Settings > Integrations > Slack, click 'Disconnect', and then 'Reconnect' to re-authorize. This will refresh the tokens and restore notifications instantly.\n\nBest,\nAlice\nHiver Support",
+    "generated_reply": "Hi there,\n\nI'm sorry to hear that your Slack notifications have stopped working. \n\nCould you please check if the Hiver app still has the necessary permissions in your #support channel? Sometimes, removing and then re-adding the Hiver integration in your Hiver dashboard can resolve these connection issues.\n\nIf the problem persists after reconnecting, please let me know, and I will investigate the integration logs for your account.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_044",
+      "email_042",
+      "email_043"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply provides clear troubleshooting steps and sets a clear expectation for follow-up if the issue persists.",
+        "score": 4
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, effectively guiding the user through the resolution process.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The advice to re-authenticate and check permissions aligns with standard troubleshooting practices seen in the provided references.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the user's report of broken Slack notifications by providing actionable troubleshooting steps.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and appropriately empathetic, matching the customer's straightforward report of a technical issue.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.65,
+    "gold_similarity": 0.9195
+  },
+  {
+    "id": "email_042",
+    "category": "integration",
+    "incoming_email": "Hello support, we re-auth'd Slack yesterday but today the notifications are not posting. Is there a bug?",
+    "gold_reply": "Hello Sarah,\n\nThanks for reaching out. I checked the integration logs and see that the webhook is returning a 403 Forbidden error. This means the Slack channel permissions might have changed. Could you please try reconnecting Hiver in Slack to refresh the permissions? Let me know if that works.\n\nBest,\nBob\nHiver Support",
+    "generated_reply": "Hi there,\n\nI am sorry to hear that the notifications are still not posting after your re-authentication yesterday. \n\nI have checked your account and it appears there is a temporary sync delay affecting your integration. I have manually triggered a refresh on our end to clear the queue. Please wait about 10 minutes and check if the notifications resume.\n\nIf you are still not seeing them after that, please let me know, and I will escalate this to our technical team for a deeper investigation.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_041",
+      "email_043",
+      "email_044"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply provides a clear troubleshooting step and a defined path forward if the issue persists, which is helpful.",
+        "score": 4
+      },
+      "conciseness": {
+        "justification": "The message is direct and avoids unnecessary filler, effectively communicating the required actions.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The agent claims to have manually triggered a refresh on the backend, which is not supported by the provided references and constitutes an unverified technical claim.",
+        "score": 2
+      },
+      "relevance": {
+        "justification": "The reply directly addresses the user's concern regarding the Slack notifications not posting after re-authentication.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional, empathetic, and appropriately calibrated for a customer reporting a technical issue.",
+        "score": 5
+      }
+    },
+    "weighted_score": 4.05,
+    "gold_similarity": 0.8589
+  },
+  {
+    "id": "email_043",
+    "category": "integration",
+    "incoming_email": "Hey support team, the Hiver to Slack notification bridge seems broken. We verified our Slack webhook is active. What should we do?",
+    "gold_reply": "Hi Michael,\n\nI apologize for the Slack issue. I have cleared the cache for your integration from our backend. Please disconnect and reconnect the Slack integration in your Hiver dashboard. This should resolve the notification lag immediately.\n\nRegards,\nCharlie\nHiver Support",
+    "generated_reply": "Hi there,\n\nThanks for reaching out. Since you've already verified that the webhook is active, it\u2019s possible that the integration has lost its authorization token.\n\nCould you please try disconnecting and then reconnecting the Slack integration from your Hiver Admin panel? This usually resolves communication issues between the two platforms.\n\nIf the notifications still don't appear after re-authorizing, please let me know, and I will escalate this to our technical team to investigate further.\n\nBest,\n\nHiver Support",
+    "retrieved_ids": [
+      "email_044",
+      "email_041",
+      "email_042"
+    ],
+    "mode": "api",
+    "judge_status": "success",
+    "judge_scores": {
+      "completeness": {
+        "justification": "The reply provides a clear troubleshooting step and sets expectations for escalation if the issue persists.",
+        "score": 5
+      },
+      "conciseness": {
+        "justification": "The response is direct and avoids unnecessary filler, getting straight to the recommended action.",
+        "score": 5
+      },
+      "correctness": {
+        "justification": "The advice to re-authenticate is consistent with the provided reference examples for resolving Slack integration issues.",
+        "score": 5
+      },
+      "relevance": {
+        "justification": "It directly addresses the user's report of a broken notification bridge by providing a specific, actionable solution.",
+        "score": 5
+      },
+      "tone": {
+        "justification": "The tone is professional and helpful, though it is slightly generic due to the lack of a personalized name.",
+        "score": 4
+      }
+    },
+    "weighted_score": 4.85,
+    "gold_similarity": 0.8312
+  }
+]
